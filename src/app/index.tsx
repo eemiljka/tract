@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { NutritionChart } from "@/components/charts/NutritionChart";
@@ -7,44 +7,52 @@ import { WorkoutChart } from "@/components/charts/WorkoutChart";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { MaxContentWidth, Spacing } from "@/constants/theme";
+import { useRouter } from "expo-router";
 
 export default function HomeScreen() {
+  const router = useRouter();
   return (
     <ThemedView style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
         <ThemedText type="title" style={styles.title}>
-          tract
+          Tract
         </ThemedText>
 
-        <ThemedView type="backgroundElement" style={styles.statContainer}>
-          <ThemedText style={styles.statLabel}>
-            My workouts past 30 days
-          </ThemedText>
+        <Pressable onPress={() => router.push("/workouts")}>
+          <ThemedView type="backgroundElement" style={styles.statContainer}>
+            <ThemedText style={styles.statLabel}>
+              My workouts past 30 days
+            </ThemedText>
 
-          <ThemedText style={styles.statValue}>+12%</ThemedText>
+            <ThemedText style={styles.statValue}>+12%</ThemedText>
 
-          <WorkoutChart />
-        </ThemedView>
+            <WorkoutChart />
+          </ThemedView>
+        </Pressable>
 
-        <ThemedView type="backgroundElement" style={styles.statContainer}>
-          <ThemedText style={styles.statLabel}>
-            My nutrition this week
-          </ThemedText>
+        <Pressable onPress={() => router.push("/nutrition")}>
+          <ThemedView type="backgroundElement" style={styles.statContainer}>
+            <ThemedText style={styles.statLabel}>
+              My nutrition this week
+            </ThemedText>
 
-          <ThemedText style={styles.statValue}>95% on point</ThemedText>
+            <ThemedText style={styles.statValue}>95% on point</ThemedText>
 
-          <NutritionChart />
-        </ThemedView>
+            <NutritionChart />
+          </ThemedView>
+        </Pressable>
 
-        <ThemedView type="backgroundElement" style={styles.statContainer}>
-          <ThemedText style={styles.statLabel}>
-            My weight past 30 days
-          </ThemedText>
+        <Pressable onPress={() => router.push("/weight")}>
+          <ThemedView type="backgroundElement" style={styles.statContainer}>
+            <ThemedText style={styles.statLabel}>
+              My weight past 30 days
+            </ThemedText>
 
-          <ThemedText style={styles.statValue}>+1.2 kg</ThemedText>
+            <ThemedText style={styles.statValue}>+1.2 kg</ThemedText>
 
-          <WeightChart />
-        </ThemedView>
+            <WeightChart />
+          </ThemedView>
+        </Pressable>
       </SafeAreaView>
     </ThemedView>
   );
